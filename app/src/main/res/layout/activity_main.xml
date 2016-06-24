@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context="com.example.administrator.clockdemo.MainActivity">
+
+    <com.example.administrator.clockdemo.ClockView
+        android:id="@+id/clock_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:clock_border_color="#b510c7"
+        app:clock_border_padding="10dp"
+        app:clock_back_color="#000000"
+        app:clock_border_width="3dp" />
+</RelativeLayout>
