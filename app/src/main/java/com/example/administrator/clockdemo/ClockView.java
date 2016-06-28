@@ -54,6 +54,7 @@ public class ClockView extends View {
         mPaint.setColor(mBorderColor);
         time = new Time();
         //获取自定义视图的属性
+        radius=dp2px(context,150);
         TypedArray array = context.obtainStyledAttributes(attars, R.styleable.clock_view);
         //获取自定义的属性值，并为其设置默认值
         mBorderColor = array.getColor
@@ -136,6 +137,7 @@ public class ClockView extends View {
         postInvalidateDelayed(1000);//每隔1s重新绘制，刷新界面
     }
 
+
     /**
      * 绘制表盘刻度文本
      *
@@ -198,10 +200,10 @@ public class ClockView extends View {
         int angle = second * 6;
         float endX = (float) (mBounds.centerX() + (radius / 1.2) * (float) Math.sin(Math.PI / 180 * angle));
         float endY = (float) (mBounds.centerY() + -(radius / 1.2) * (float) Math.cos(Math.PI / 180 * angle));
-        float startX= (mBounds.centerX() - 50 * (float) Math.sin(Math.PI / 180 * angle));
-        float startY=  (mBounds.centerY() + 50 * (float) Math.cos(Math.PI / 180 * angle));
+        float startX = (mBounds.centerX() - 50 * (float) Math.sin(Math.PI / 180 * angle));
+        float startY = (mBounds.centerY() + 50 * (float) Math.cos(Math.PI / 180 * angle));
         mPaint.setStrokeWidth(senWidth);
-        canvas.drawLine(startX,startY, endX, endY, mPaint);
+        canvas.drawLine(startX, startY, endX, endY, mPaint);
     }
 
     /**
@@ -255,11 +257,35 @@ public class ClockView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widhSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int w;
+        int h;
+        if (widthMode == MeasureSpec.EXACTLY) {
+            w = widhSize;
+        } else {
+            w = (int) (getPaddingLeft() + radius*2 + getPaddingRight());
+        }
+        if (heightMode == MeasureSpec.EXACTLY) {
+            h = heightSize;
+        } else {
+            h = (int) (getPaddingTop() + radius*2 + getPaddingBottom());
+        }
+       setMeasuredDimension(w,h);
+
+
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
+    }
+
+    private int dp2px(Context context,int dp){
+        float denisty=context.getResources().getDisplayMetrics().density;
+        return (int)(dp*denisty+0.5f);
+
     }
 }

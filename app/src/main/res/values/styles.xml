@@ -14,7 +14,7 @@
         <attr name="clock_border_width" format="dimension" />
         <attr name="clock_border_padding" format="dimension" />
         <attr name="clock_drawRect" format="boolean" />
-        <attr name="clock_back_color" format="color"/>
-        <attr name="clock_back_coor" format=""/>
+        <attr name="clock_back_color" format="color" />
+       />
     </declare-styleable>
 </resources>
